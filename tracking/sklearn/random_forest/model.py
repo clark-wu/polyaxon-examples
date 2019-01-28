@@ -3,7 +3,7 @@ import numpy as np
 
 # Polyaxon
 from polyaxon_client.tracking import Experiment
-
+from polyaxon_client.client import PolyaxonClient
 from sklearn import datasets
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import cross_val_score
@@ -42,7 +42,9 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Polyaxon
-    experiment = Experiment(project='random-forest')
+    client = PolyaxonClient(host="192.168.1.50",http_port=31811,ws_port=31812,token="5f1681524a3c4146a3d68def2434efc71448e9a1e3f3400a832110165e9db715")
+    client.project.create_project({"name":'example2'})
+    experiment = Experiment(project='example2',client=client)
     experiment.create()
     experiment.log_params(n_estimators=args.n_estimators,
                           max_features=args.max_features,

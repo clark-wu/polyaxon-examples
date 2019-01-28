@@ -16,9 +16,10 @@ declarations:
   momentum: 0.5
 
 build:
-  image: pytorch/pytorch:v0.2
-  build_steps:
-    - pip install --no-cache-dir -U polyaxon-helper
+  image: 192.168.1.49:5000/pytorch/pytorch:v0.2
+  #image: pytorch/pytorch:v0.2
+  #build_steps:
+  #  - pip install --no-cache-dir polyaxon-client==0.3.7
 
 run:
   cmd: python distributed_run.py --batch-size={{ batch_size_train }} \

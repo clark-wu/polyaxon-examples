@@ -1,16 +1,25 @@
 ---
 version: 1
 
-kind: experiment
+kind: group
+
+hptuning:
+  concurrency: 3
+  matrix:
+    n_estimators:
+      values: [3, 4, 5]
+    min_samples_leaf:
+      values: [80, 100, 120]
 
 declarations:
-  n_estimators: 3
   max_features: 3
   min_samples_leaf: 80
 
 build:
   image: 192.168.1.49:5000/polyaxon/python-36-sklearn:0.20.1
-
+  #image: python:2.7
+  #build_steps:
+    #- pip install --no-cache-dir -r requirements.txt
 
 run:
   cmd: python model.py --n_estimators={{ n_estimators }} \
