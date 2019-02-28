@@ -42,7 +42,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Polyaxon
-    client = PolyaxonClient(host="192.168.1.50",http_port=31811,ws_port=31812,token="5f1681524a3c4146a3d68def2434efc71448e9a1e3f3400a832110165e9db715")
+    client = PolyaxonClient(host="192.168.1.51",http_port=31811,ws_port=31812,token="cec7afd4cfd64df596ccb233d28b6b2d8306dd581e144e7a845b467974f7d92d")
     client.project.create_project({"name":'example2'})
     experiment = Experiment(project='example2',client=client)
     experiment.create()

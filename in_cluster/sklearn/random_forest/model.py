@@ -46,8 +46,6 @@ if __name__ == "__main__":
 
     (X, y) = load_data()
 
-
-
     # Polyaxon
     experiment.log_data_ref(data=X, data_name='dataset_X')
     experiment.log_data_ref(data=y, data_name='dataset_y')

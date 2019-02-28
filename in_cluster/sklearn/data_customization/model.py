@@ -6,6 +6,24 @@ from polyaxon_client.tracking import Experiment
 from sklearn.externals import joblib
 from sklearn.ensemble import RandomForestClassifier
 
+#用于加载模型预测的类
+class model:
+    def __init__(self):
+        #to load models in "outputs" folder
+        print("load models.")
+        self.__md = joblib.load("./outputs/models/random_forest.md")
+        return
+
+    def predict(self,X,feature_names):
+        """
+        Return a prediction.
+        Parameters
+        ----------
+        X : array-like
+        feature_names : array of feature names (optional)
+        """
+        print("Predict called - will run identity function")
+        return self.__md.predict(X)
 
 
 def load_data():
@@ -44,5 +62,6 @@ if __name__ == "__main__":
         min_samples_leaf=args.min_samples_leaf,
     )
     model = classifier.fit(X,y)
-    joblib.dump(model,"/outputs/random_forest.md")
+    #由于暂时polyaxon-client的log_outputs功能没有完成，所以暂时保存模型功能以其他方式实现
+    joblib.dump(model,"%s/models/random_forest.md"%experiment.outputs_store.path)
 
